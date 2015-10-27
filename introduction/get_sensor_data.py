@@ -8,7 +8,10 @@ In this exercise you need to know how to get sensor data.
 '''
 
 from spark_agent import SparkAgent
+import numpy as np
+from sexpr import str2sexpr
 
+HINGE_JOINT_PERCEPTOR = "HJ"
 
 class MyAgent(SparkAgent):
     def think(self, perception):
@@ -16,8 +19,13 @@ class MyAgent(SparkAgent):
         tempeture = 0
         # YOUR CODE HERE
         # set angle and tempeture to current data of joint HeadYaw
-
-        print 'HeadYaw angle: ' + str(angle) + ' tempeture: ' + str(tempeture)
+	#self.joint = {"hj1"}
+	
+	
+	angle = perception.joint["HeadYaw"]
+	tempeture = perception.joint_temperature["HeadYaw"]
+	
+	print 'HeadYaw angle: ' + str(angle) + ' tempeture: ' + str(tempeture)
         return super(MyAgent, self).think(perception)
 
 if '__main__' == __name__:
